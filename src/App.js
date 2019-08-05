@@ -2,32 +2,33 @@ import React from "react"
 // import logo from "./logo.svg"
 import "./App.css"
 
-const NUM_ROWS = 30
+const NUM_ROWS = 2
+const N_SAMPLES = 50
+const length = 600
 
 function App() {
   const inputArray = Array(NUM_ROWS).fill(0)
+  const xArray = Array(N_SAMPLES).fill(0)
+  const yArray = Array(N_SAMPLES).fill(0)
 
-  const rows = inputArray.map((n, i) => {
-    const x1 = 100
-    const y1 = 100 + i * 20
-    const x2 = 700
-    const y2 = 100 + i * 20
-
-    return { x1, y1, x2, y2 }
-  })
+  const rows = inputArray.map((n, i) =>
+    xArray.map((n, j) => {
+      const x = 100 + j * (length / N_SAMPLES)
+      console.log({ j, x: j * (length / N_SAMPLES) })
+      const y = 100 + i * (length / N_SAMPLES) * (Math.random() - 0.5)
+      return [x, y]
+    })
+  )
 
   console.log(inputArray, rows)
 
   return (
     <svg width={1200} height={1200}>
       <rect x={0} y={0} width={1200} height={1200} fill="none" />
-      {rows.map(({ x1, y1, x2, y2 }, i) => (
-        <line
+      {rows.map((row, i) => (
+        <polyline
           key={`${i}`}
-          x1={x1}
-          y1={y1}
-          x2={x2}
-          y2={y2}
+          points={`${row[0][0]},${row[0][1]} ${row[1][0]},${row[1][1]}`}
           fill="none"
           stroke="black"
           strokeWidth="3"
