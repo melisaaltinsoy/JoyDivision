@@ -8,16 +8,38 @@ class HelloMessage extends React.Component {
   }
 }
 
+const NUM_ROWS = 20
+
 function App() {
+  const inputArray = Array(NUM_ROWS).fill(0)
+
+  const rows = inputArray.map((n, i) => {
+    const x1 = 100
+    const y1 = 100 + i * 30
+    const x2 = 700
+    const y2 = 100 + i * 50
+
+    return { x1, y1, x2, y2 }
+  })
+
+  console.log(inputArray, rows)
+
   return (
-    (
-      <div className="App">
-        <header className="App-header">
-          {/* <img src={logo} className="App-logo" alt="logo" /> */}
-        </header>
-      </div>
-    ),
-    <HelloMessage name="Mel" />
+    <svg width={1200} height={1200}>
+      <rect x={0} y={0} width={1200} height={1200} fill="none" />
+      {rows.map(({ x1, y1, x2, y2 }, i) => (
+        <line
+          key={`${i}`}
+          x1={x1}
+          y1={y1}
+          x2={x2}
+          y2={y2}
+          fill="none"
+          stroke="black"
+          strokeWidth="3"
+        />
+      ))}
+    </svg>
   )
 }
 
