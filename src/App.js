@@ -2,22 +2,16 @@ import React from "react"
 // import logo from "./logo.svg"
 import "./App.css"
 
-class HelloMessage extends React.Component {
-  render() {
-    return <div className="App-header">Hello {this.props.name}</div>
-  }
-}
-
-const NUM_ROWS = 20
+const NUM_ROWS = 30
 
 function App() {
   const inputArray = Array(NUM_ROWS).fill(0)
 
   const rows = inputArray.map((n, i) => {
     const x1 = 100
-    const y1 = 100 + i * 30
+    const y1 = 100 + i * 20
     const x2 = 700
-    const y2 = 100 + i * 50
+    const y2 = 100 + i * 20
 
     return { x1, y1, x2, y2 }
   })
