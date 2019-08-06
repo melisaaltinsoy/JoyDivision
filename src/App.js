@@ -2,7 +2,7 @@ import React from "react"
 // import logo from "./logo.svg"
 import "./App.css"
 
-const NUM_ROWS = 40
+const NUM_ROWS = 50
 const N_SAMPLES = 50
 const length = 600
 
@@ -12,12 +12,17 @@ function App() {
 
   const rows = inputArray.map((n, i) =>
     xArray.map((n, j) => {
-      const x = 100 + j * (length / N_SAMPLES)
-      const y = 100 + i * (length / N_SAMPLES) + Math.random() * 10
+      const x = 150 + j * (length / N_SAMPLES)
+      const distanceToCenter = Math.abs(j * (length / N_SAMPLES) - length / 2)
+      const random =
+        (Math.random() *
+          (distanceToCenter + 90 - length / 2) *
+          Math.max(250 - distanceToCenter, 0)) /
+        length
+      const y = 150 + i * (length / N_SAMPLES) + random
       return [x, y]
     })
   )
-
   // console.log(
   //   rows[0][0].join(","),
   //   rows[0][1],
@@ -26,19 +31,20 @@ function App() {
   // )
 
   return (
-    <svg width={900} height={900}>
-      <rect x={0} y={0} width={900} height={900} fill="none" />
+    <svg width={900} height={900} fill="black">
+      <rect x={0} y={0} width={900} height={900} fill="black" />
       {rows.map((points, i) => {
+        console.log(points.join(" "))
         return (
           <polyline
             key={`${i}`}
             points={` 
-            ${points}
-            
+            ${points.join(" ")}
             `}
-            fill="none"
-            stroke="black"
-            strokeWidth="3"
+            fill="black"
+            stroke="white"
+            strokeWidth="2"
+            shapeRendering="geometricPrecision"
           />
         )
       })}
