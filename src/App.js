@@ -9,6 +9,7 @@ const length = 600
 function App() {
   const inputArray = Array(NUM_ROWS).fill(0)
   const xArray = Array(N_SAMPLES).fill(0)
+  console.log(inputArray)
 
   const rows = inputArray.map((n, i) =>
     xArray.map((n, j) => {
@@ -31,24 +32,26 @@ function App() {
   // )
 
   return (
-    <svg width={900} height={900} fill="black">
-      <rect x={0} y={0} width={900} height={900} fill="black" />
-      {rows.map((points, i) => {
-        console.log(points.join(" "))
-        return (
-          <polyline
-            key={`${i}`}
-            points={` 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js" />,
+    (
+      <svg width={900} height={900} fill="black">
+        <rect x={0} y={0} width={900} height={900} fill="black" />
+        {rows.map((points, i) => {
+          return (
+            <polyline
+              key={`${i}`}
+              points={` 
             ${points.join(" ")}
             `}
-            fill="black"
-            stroke="white"
-            strokeWidth="2"
-            shapeRendering="geometricPrecision"
-          />
-        )
-      })}
-    </svg>
+              fill="black"
+              stroke="white"
+              strokeWidth="2"
+              shapeRendering="geometricPrecision"
+            />
+          )
+        })}
+      </svg>
+    )
   )
 }
 
