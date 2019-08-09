@@ -9,7 +9,6 @@ const length = 600
 function App() {
   const inputArray = Array(NUM_ROWS).fill(0)
   const xArray = Array(N_SAMPLES).fill(0)
-  console.log(inputArray)
 
   const rows = inputArray.map((n, i) =>
     xArray.map((n, j) => {
@@ -30,6 +29,8 @@ function App() {
   //   rows[0][0].join(","),
   //   rows[0][1]
   // )
+
+  console.log(rows)
 
   return (
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js" />,
